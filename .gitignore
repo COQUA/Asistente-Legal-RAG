@@ -1,0 +1,69 @@
+# =========================
+# Python / Build artifacts
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.dylib
+*.egg-info/
+dist/
+build/
+.eggs/
+.python-version
+
+# =========================
+# Virtualenvs
+# =========================
+env/
+.venv/
+venv/
+
+# Índice vectorial y metadatos locales
+storage/*
+!storage/.gitkeep
+
+# =========================
+# Config/Secrets
+# =========================
+.env
+*.env
+.streamlit/secrets.toml
+
+# =========================
+# Herramientas / Caches
+# =========================
+.pytest_cache/
+.mypy_cache/
+coverage.xml
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.code-workspace
+
+# =========================
+# Sistema operativo
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Logs / temporales
+# =========================
+*.log
+*.tmp
+*.bak
+*.swp
+
+# =========================
+# Otros
+# =========================
+*.zip
