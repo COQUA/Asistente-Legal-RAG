@@ -99,13 +99,6 @@ Consideraciones importantes
 - `pypdf` NO hace OCR: si tus PDFs son imágenes escaneadas, necesitás un paso de OCR (p. ej. Tesseract) antes de la ingestión.
 - `utils.py` hace llamadas secuenciales a la API para cada chunk — para colecciones grandes considerá batching o límites de tasa.
 
-Buenas prácticas y mejoras sugeridas
-----------------------------------
-- Evitar subir documentos sensibles a servicios externos sin revisar la política de privacidad.
-- Implementar reintentos y manejo de errores alrededor de las llamadas a la API.
-- Mejorar chunking usando tokenizers (en lugar de caracteres) para respetar límites de modelo.
-- Añadir tests (pytest) para `chunk_text`, `_l2norm_rows` y `read_pdfs`.
-
 Licencia y contacto
 -------------------
 - Este repo es un trabajo Practico para la Materia SAC (2025) de la carrera TSDSM en el IPF.
