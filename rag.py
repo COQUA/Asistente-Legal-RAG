@@ -6,32 +6,32 @@ import numpy as np
 import google.generativeai as genai
 
 EMBED_MODEL = "text-embedding-004"
-CHAT_MODEL  = "gemini-2.0-flash"  # o "gemini-1.5-pro"
+CHAT_MODEL  = "gemini-2.0-flash"  # modelo de chat de Google 
 
 def load_index(store_dir="storage"):
-    embs = np.load(os.path.join(store_dir, "embeddings.npy"))              # (N, D)
+    embs = np.load(os.path.join(store_dir, "embeddings.npy"))             
     with open(os.path.join(store_dir, "meta.json"), "r", encoding="utf-8") as f:
         metas = json.load(f)
     return embs, metas
 
 def _l2norm_rows(x: np.ndarray) -> np.ndarray:
-    # Devuelve x normalizada por fila, evitando div/0
-    norms = np.linalg.norm(x, axis=1, keepdims=True) + 1e-9               # (N, 1)
+    # Devuelve x normalizada por fila
+    norms = np.linalg.norm(x, axis=1, keepdims=True) + 1e-9              
     return x / norms
 
 def embed_query(q: str) -> np.ndarray:
     r = genai.embed_content(model=EMBED_MODEL, content=q)
-    return np.array(r["embedding"], dtype=np.float32)                      # (D,)
+    return np.array(r["embedding"], dtype=np.float32)                    
 
 def search(query: str, k=5, store_dir="storage"):
     embs, metas = load_index(store_dir)
-    embs = embs.astype(np.float32, copy=False)                             # (N, D)
-    embs_norm = _l2norm_rows(embs)                                         # (N, D)
+    embs = embs.astype(np.float32, copy=False)                          
+    embs_norm = _l2norm_rows(embs)                                      
 
-    q = embed_query(query).astype(np.float32)                              # (D,)
-    q = q / (np.linalg.norm(q) + 1e-9)                                     # (D,)
+    q = embed_query(query).astype(np.float32)                              
+    q = q / (np.linalg.norm(q) + 1e-9)                                     
 
-    sims = embs_norm @ q                                                   # (N,)
+    sims = embs_norm @ q                                                  
     top = sims.argsort()[::-1][:k]
     return [(float(sims[i]), metas[i]) for i in top]
 

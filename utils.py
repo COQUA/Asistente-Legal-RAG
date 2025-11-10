@@ -6,7 +6,7 @@ import numpy as np
 from pypdf import PdfReader
 import google.generativeai as genai
 
-EMBED_MODEL = "text-embedding-004"  # 768D
+EMBED_MODEL = "text-embedding-004" 
 
 def read_pdfs(data_dir: str):
     docs = []
