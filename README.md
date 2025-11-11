@@ -16,8 +16,6 @@ Aquí hay una demostración visual cortaque muestra la app en acción:
 
 ![Demo de la app](assets/demo.gif)
 
-Notas:
-- El GIF está incluido en `assets/demo.gif` (si no se ve en la vista previa de GitHub, abrí el archivo directamente en la carpeta `assets/`).
 
 Stack tecnológico
 ------------------
